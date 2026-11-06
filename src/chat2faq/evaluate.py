@@ -15,12 +15,21 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from .mine import QA, Vectorizer, cosine, faq, group, merge_by_answer
+from .mine import QA, Vectorizer, faq, group, merge_by_answer
+
+Key = tuple[str | None, int]
 
 
-def load_labels(path: Path) -> dict[int, str]:
+def load_labels(path: Path) -> dict[Key, str]:
+    """Rows are {"line", "intent"} for a single export, or {"file", "line", "intent"} for a
+    folder of exports (what `nakli chats --split` writes)."""
     rows = [json.loads(x) for x in path.read_text(encoding="utf-8").splitlines() if x.strip()]
-    return {r["line"]: r["intent"] for r in rows}
+    return {(r.get("file"), r["line"]): r["intent"] for r in rows}
+
+
+def _key(qa: QA, labels: dict[Key, str]) -> Key:
+    k: Key = (qa.question.source, qa.question.line)
+    return k if k in labels else (None, qa.question.line)
 
 
 def _build(qas: list[QA], threshold: float):
@@ -29,19 +38,19 @@ def _build(qas: list[QA], threshold: float):
     return v, groups
 
 
-def score(qas: list[QA], labels: dict[int, str], threshold: float = 0.3) -> dict:
-    labelled = [q for q in qas if q.question.line in labels]
+def score(qas: list[QA], labels: dict[Key, str], threshold: float = 0.3) -> dict:
+    labelled = [q for q in qas if _key(q, labels) in labels]
     v, groups = _build(labelled, threshold)
     entries = [g for g in groups if len(g.members) >= 2]
     majority = []
     pure = 0
     for g in entries:
-        counts = Counter(labels[m.question.line] for m in g.members)
+        counts = Counter(labels[_key(m, labels)] for m in g.members)
         intent, n = counts.most_common(1)[0]
         majority.append(intent)
         pure += n
     total = sum(len(g.members) for g in entries) or 1
-    all_intents = set(labels[q.question.line] for q in labelled)
+    all_intents = set(labels[_key(q, labels)] for q in labelled)
 
     ordered = sorted(labelled, key=lambda q: q.question.at)
     cut = int(len(ordered) * 0.8)
@@ -49,17 +58,17 @@ def score(qas: list[QA], labels: dict[int, str], threshold: float = 0.3) -> dict
     v2, groups2 = _build(train, threshold)
     built = [g for g in groups2 if len(g.members) >= 2]
     intents2 = [
-        Counter(labels[m.question.line] for m in g.members).most_common(1)[0][0] for g in built
+        Counter(labels[_key(m, labels)] for m in g.members).most_common(1)[0][0] for g in built
     ]
     covered = 0
     for q in test:
         qv = v2.vec(q.asked)
-        sims = [cosine(qv, g.centroid) for g in built]
+        sims = [g.similarity(qv) for g in built]
         if sims:
             i = max(range(len(sims)), key=sims.__getitem__)
-            covered += sims[i] >= threshold and intents2[i] == labels[q.question.line]
-    customer_lines = {line for line, intent in labels.items() if intent != "greeting"}
-    found = {q.question.line for q in qas} & customer_lines
+            covered += sims[i] >= threshold and intents2[i] == labels[_key(q, labels)]
+    customer_lines = {key for key, intent in labels.items() if intent != "greeting"}
+    found = {_key(q, labels) for q in qas} & customer_lines
     return {
         "question_recall": round(100 * len(found) / (len(customer_lines) or 1), 1),
         "questions": len(labelled),

@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import math
 import re
+from bisect import bisect_left
 from collections import Counter
 from dataclasses import dataclass, field
 from datetime import timedelta
@@ -54,7 +55,12 @@ def pair(msgs: list[Message], business: str, window_hours: int = 6) -> list[QA]:
     for m in sorted(msgs, key=lambda m: (m.source, m.at, m.line)):
         if m.sender != business:
             threads.setdefault((m.source, m.sender), []).append(m)
-    biz = [m for m in msgs if m.sender == business]
+    # the store's messages per file, in time order, so each question bisects to its window
+    biz: dict[str, list[Message]] = {}
+    for m in sorted(msgs, key=lambda m: (m.at, m.line)):
+        if m.sender == business:
+            biz.setdefault(m.source, []).append(m)
+    biz_times = {src: [m.at for m in ms] for src, ms in biz.items()}
     out = []
     for (source, _), cust_msgs in threads.items():
         for i, q in enumerate(cust_msgs):
@@ -62,17 +68,14 @@ def pair(msgs: list[Message], business: str, window_hours: int = 6) -> list[QA]:
                 continue
             nxt_q = cust_msgs[i + 1].at if i + 1 < len(cust_msgs) else None
             limit = q.at + timedelta(hours=window_hours)
-            answer = next(
-                (
-                    b
-                    for b in biz
-                    if b.source == source
-                    and q.at <= b.at <= limit
-                    and (nxt_q is None or b.at <= nxt_q)
-                    and _addresses(b, q)
-                ),
-                None,
-            )
+            answer = None
+            replies = biz.get(source, [])
+            for b in replies[bisect_left(biz_times.get(source, []), q.at) :]:
+                if b.at > limit or (nxt_q is not None and b.at > nxt_q):
+                    break
+                if _addresses(b, q):
+                    answer = b
+                    break
             out.append(
                 QA(
                     q,
@@ -129,18 +132,31 @@ def cosine(a: dict[str, float], b: dict[str, float]) -> float:
 
 @dataclass
 class Group:
+    """Members plus a running sum of their vectors. Adding a member updates the sum and its
+    squared norm in O(size of the new vector), so grouping stays fast on big exports."""
+
     members: list[QA] = field(default_factory=list)
     vecs: list[dict[str, float]] = field(default_factory=list)
-    centroid: dict[str, float] = field(default_factory=dict)
+    total: dict[str, float] = field(default_factory=dict)
+    sq: float = 0.0
 
     def add(self, qa: QA, v: dict[str, float]) -> None:
         self.members.append(qa)
         self.vecs.append(v)
-        acc: Counter[str] = Counter()
-        for vec in self.vecs:
-            acc.update(vec)
-        norm = math.sqrt(sum(x * x for x in acc.values())) or 1.0
-        self.centroid = {k: x / norm for k, x in acc.items()}
+        for k, x in v.items():
+            old = self.total.get(k, 0.0)
+            self.total[k] = old + x
+            self.sq += (old + x) ** 2 - old * old
+
+    def similarity(self, v: dict[str, float]) -> float:
+        """Cosine similarity between v (unit length) and this group's centroid."""
+        norm = math.sqrt(self.sq) or 1.0
+        return sum(x * self.total.get(k, 0.0) for k, x in v.items()) / norm
+
+    @property
+    def centroid(self) -> dict[str, float]:
+        norm = math.sqrt(self.sq) or 1.0
+        return {k: x / norm for k, x in self.total.items()}
 
 
 def group(qas: list[QA], vectorizer: Vectorizer, threshold: float = 0.3) -> list[Group]:
@@ -149,7 +165,7 @@ def group(qas: list[QA], vectorizer: Vectorizer, threshold: float = 0.3) -> list
         v = vectorizer.vec(qa.asked)
         best, best_sim = None, threshold
         for g in groups:
-            s = cosine(v, g.centroid)
+            s = g.similarity(v)
             if s >= best_sim:
                 best, best_sim = g, s
         if best is None:
@@ -220,7 +236,7 @@ def faq(groups: list[Group], vectorizer: Vectorizer, min_asked: int = 2) -> list
     for g in groups:
         if len(g.members) < min_asked:
             continue
-        sims = [cosine(v, g.centroid) for v in g.vecs]
+        sims = [g.similarity(v) for v in g.vecs]
         rep = g.members[max(range(len(sims)), key=sims.__getitem__)].asked
         answers = [m.answered for m in g.members if m.answered]
         out.append(
