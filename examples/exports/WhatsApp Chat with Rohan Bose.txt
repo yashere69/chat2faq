@@ -1,0 +1,8 @@
+16/01/26, 9:20 am - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+16/01/26, 9:21 am - Rohan Bose: Hello
+16/01/26, 9:38 am - Rohan Bose: kya COD milega pune mein
+16/01/26, 9:52 am - Indigo Loom: Haan, ₹5,000 tak ke order par COD hai, ₹49 extra lagta hai.
+16/01/26, 10:09 am - Rohan Bose: Hi, mera order #1020 kab tak aayega?
+16/01/26, 10:16 am - Indigo Loom: Hi Rohan, #1020 courier ke paas hai. Tracking link: https://track.example.com/1020
+16/01/26, 10:19 am - Rohan Bose: dhone pe colour nikalta hai kya?
+16/01/26, 10:46 am - Indigo Loom: Natural dyes hain, pehli 2-3 dhulai mein thoda rang nikal sakta hai. Pehli baar alag se thande paani mein dhoyiye.

@@ -1,0 +1,6 @@
+04/02/26, 5:14 pm - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+04/02/26, 5:15 pm - Arjun Sharma: Namaste
+04/02/26, 5:29 pm - Arjun Sharma: #1032 abhi tak nahi aaya, kab milega?
+04/02/26, 5:34 pm - Indigo Loom: Namaste Arjun! Order #1032 dispatch ho gaya hai, 3-5 din mein pahunch jayega. Tracking: https://track.example.com/1032
+04/02/26, 5:41 pm - Arjun Sharma: please call on 9876508806
+04/02/26, 6:26 pm - Indigo Loom: Ji, hum aapko call karenge.

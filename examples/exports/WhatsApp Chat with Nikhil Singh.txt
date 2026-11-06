@@ -1,0 +1,10 @@
+17/01/26, 3:47 pm - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+17/01/26, 3:48 pm - Nikhil Singh: Hi
+17/01/26, 4:04 pm - Nikhil Singh: #1038 abhi tak nahi aaya, kab milega?
+17/01/26, 4:16 pm - Indigo Loom: Hi Nikhil, #1038 courier ke paas hai. Tracking link: https://track.example.com/1038
+17/01/26, 4:20 pm - Nikhil Singh: kurta mein M lu ya L? bust 38 hai
+17/01/26, 4:38 pm - Indigo Loom: Hamare kurtas mein S 36, M 38, L 40, XL 42, XXL 44 (bust, inches). Thoda loose chahiye to ek size upar lijiye.
+17/01/26, 4:45 pm - Nikhil Singh: mera number 9876505235 hai, call kar lena
+17/01/26, 5:13 pm - Indigo Loom: Ji, hum aapko call karenge.
+17/01/26, 5:28 pm - Nikhil Singh: size chhota hai, return ho jayega?
+17/01/26, 5:44 pm - Indigo Loom: Delivery ke 7 din ke andar return kar sakte hain, bina pehne aur tag ke saath. Order page se request kariye, pickup hum karwa denge.

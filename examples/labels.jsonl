@@ -1,0 +1,163 @@
+{"file": "WhatsApp Chat with Neha Das.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Neha Das.txt", "line": 3, "intent": "cod"}
+{"file": "WhatsApp Chat with Neha Das.txt", "line": 5, "intent": "order_status"}
+{"file": "WhatsApp Chat with Arjun Verma.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Arjun Verma.txt", "line": 3, "intent": "cod"}
+{"file": "WhatsApp Chat with Arjun Verma.txt", "line": 5, "intent": "refund"}
+{"file": "WhatsApp Chat with Rohan Khan.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Rohan Khan.txt", "line": 3, "intent": "size"}
+{"file": "WhatsApp Chat with Rohan Khan.txt", "line": 5, "intent": "refund"}
+{"file": "WhatsApp Chat with Rohan Khan.txt", "line": 7, "intent": "order_status"}
+{"file": "WhatsApp Chat with Rohan Khan.txt", "line": 9, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Neha Das (2).txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Neha Das (2).txt", "line": 3, "intent": "returns"}
+{"file": "WhatsApp Chat with Neha Das (2).txt", "line": 5, "intent": "refund"}
+{"file": "WhatsApp Chat with Neha Das (2).txt", "line": 7, "intent": "order_status"}
+{"file": "WhatsApp Chat with Neha Das (2).txt", "line": 9, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Asha Rawat.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Asha Rawat.txt", "line": 3, "intent": "size"}
+{"file": "WhatsApp Chat with Asha Rawat.txt", "line": 5, "intent": "callback"}
+{"file": "WhatsApp Chat with Asha Rawat.txt", "line": 7, "intent": "cod"}
+{"file": "WhatsApp Chat with Arjun Das.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Arjun Das.txt", "line": 3, "intent": "refund"}
+{"file": "WhatsApp Chat with Arjun Das.txt", "line": 5, "intent": "callback"}
+{"file": "WhatsApp Chat with Arjun Das.txt", "line": 7, "intent": "cod"}
+{"file": "WhatsApp Chat with Aditya Kulkarni.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Aditya Kulkarni.txt", "line": 3, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Aditya Kulkarni.txt", "line": 5, "intent": "refund"}
+{"file": "WhatsApp Chat with Aditya Kulkarni.txt", "line": 7, "intent": "callback"}
+{"file": "WhatsApp Chat with Aditya Khan.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Aditya Khan.txt", "line": 3, "intent": "size"}
+{"file": "WhatsApp Chat with Aditya Khan.txt", "line": 5, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Kavya Mehta.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Kavya Mehta.txt", "line": 3, "intent": "returns"}
+{"file": "WhatsApp Chat with Kavya Mehta.txt", "line": 5, "intent": "size"}
+{"file": "WhatsApp Chat with Rohan Sharma.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Rohan Sharma.txt", "line": 3, "intent": "order_status"}
+{"file": "WhatsApp Chat with Rohan Sharma.txt", "line": 5, "intent": "callback"}
+{"file": "WhatsApp Chat with Rohan Sharma.txt", "line": 7, "intent": "cod"}
+{"file": "WhatsApp Chat with Priya Menon.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Priya Menon.txt", "line": 3, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Priya Menon.txt", "line": 5, "intent": "cod"}
+{"file": "WhatsApp Chat with Priya Menon.txt", "line": 7, "intent": "callback"}
+{"file": "WhatsApp Chat with Kabir Das.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Kabir Das.txt", "line": 3, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Kabir Das.txt", "line": 5, "intent": "size"}
+{"file": "WhatsApp Chat with Kabir Das.txt", "line": 7, "intent": "cod"}
+{"file": "WhatsApp Chat with Kabir Das.txt", "line": 9, "intent": "callback"}
+{"file": "WhatsApp Chat with Zoya Menon.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Zoya Menon.txt", "line": 3, "intent": "callback"}
+{"file": "WhatsApp Chat with Zoya Menon.txt", "line": 5, "intent": "cod"}
+{"file": "WhatsApp Chat with Zoya Menon.txt", "line": 7, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Zoya Menon.txt", "line": 9, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Kavya Singh.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Kavya Singh.txt", "line": 3, "intent": "cod"}
+{"file": "WhatsApp Chat with Kavya Singh.txt", "line": 5, "intent": "returns"}
+{"file": "WhatsApp Chat with Kavya Singh.txt", "line": 7, "intent": "size"}
+{"file": "WhatsApp Chat with Arjun Khan.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Arjun Khan.txt", "line": 3, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Arjun Khan.txt", "line": 5, "intent": "cod"}
+{"file": "WhatsApp Chat with Arjun Khan.txt", "line": 7, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Arjun Khan.txt", "line": 9, "intent": "returns"}
+{"file": "WhatsApp Chat with Kabir Iyer.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Kabir Iyer.txt", "line": 3, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Kabir Iyer.txt", "line": 5, "intent": "cod"}
+{"file": "WhatsApp Chat with Kabir Iyer.txt", "line": 7, "intent": "refund"}
+{"file": "WhatsApp Chat with Meera Joshi.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Meera Joshi.txt", "line": 3, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Meera Joshi.txt", "line": 5, "intent": "callback"}
+{"file": "WhatsApp Chat with Priya Mehta.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Priya Mehta.txt", "line": 3, "intent": "refund"}
+{"file": "WhatsApp Chat with Priya Mehta.txt", "line": 5, "intent": "callback"}
+{"file": "WhatsApp Chat with Priya Mehta.txt", "line": 7, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Priya Mehta.txt", "line": 9, "intent": "returns"}
+{"file": "WhatsApp Chat with Zoya Kulkarni.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Zoya Kulkarni.txt", "line": 3, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Zoya Kulkarni.txt", "line": 5, "intent": "size"}
+{"file": "WhatsApp Chat with Zoya Kulkarni.txt", "line": 7, "intent": "refund"}
+{"file": "WhatsApp Chat with Rohan Bose.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Rohan Bose.txt", "line": 3, "intent": "cod"}
+{"file": "WhatsApp Chat with Rohan Bose.txt", "line": 5, "intent": "order_status"}
+{"file": "WhatsApp Chat with Rohan Bose.txt", "line": 7, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Ishita Sharma.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Ishita Sharma.txt", "line": 3, "intent": "size"}
+{"file": "WhatsApp Chat with Ishita Sharma.txt", "line": 5, "intent": "cod"}
+{"file": "WhatsApp Chat with Pooja Singh.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Pooja Singh.txt", "line": 3, "intent": "callback"}
+{"file": "WhatsApp Chat with Pooja Singh.txt", "line": 5, "intent": "returns"}
+{"file": "WhatsApp Chat with Pooja Singh.txt", "line": 7, "intent": "refund"}
+{"file": "WhatsApp Chat with Meera Joshi (2).txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Meera Joshi (2).txt", "line": 3, "intent": "refund"}
+{"file": "WhatsApp Chat with Meera Joshi (2).txt", "line": 5, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Meera Joshi (2).txt", "line": 7, "intent": "callback"}
+{"file": "WhatsApp Chat with Asha Menon.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Asha Menon.txt", "line": 3, "intent": "refund"}
+{"file": "WhatsApp Chat with Asha Menon.txt", "line": 5, "intent": "order_status"}
+{"file": "WhatsApp Chat with Asha Menon.txt", "line": 7, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Asha Menon.txt", "line": 9, "intent": "returns"}
+{"file": "WhatsApp Chat with Meera Iyer.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Meera Iyer.txt", "line": 3, "intent": "order_status"}
+{"file": "WhatsApp Chat with Meera Iyer.txt", "line": 5, "intent": "size"}
+{"file": "WhatsApp Chat with Meera Iyer.txt", "line": 7, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Meera Iyer.txt", "line": 9, "intent": "returns"}
+{"file": "WhatsApp Chat with Neha Kulkarni.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Neha Kulkarni.txt", "line": 3, "intent": "cod"}
+{"file": "WhatsApp Chat with Neha Kulkarni.txt", "line": 5, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Neha Kulkarni.txt", "line": 7, "intent": "order_status"}
+{"file": "WhatsApp Chat with Priya Patel.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Priya Patel.txt", "line": 3, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Priya Patel.txt", "line": 5, "intent": "order_status"}
+{"file": "WhatsApp Chat with Dev Menon.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Dev Menon.txt", "line": 3, "intent": "refund"}
+{"file": "WhatsApp Chat with Dev Menon.txt", "line": 5, "intent": "order_status"}
+{"file": "WhatsApp Chat with Dev Menon.txt", "line": 7, "intent": "size"}
+{"file": "WhatsApp Chat with Dev Menon.txt", "line": 9, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Arjun Iyer.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Arjun Iyer.txt", "line": 3, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Arjun Iyer.txt", "line": 5, "intent": "order_status"}
+{"file": "WhatsApp Chat with Arjun Iyer.txt", "line": 7, "intent": "size"}
+{"file": "WhatsApp Chat with Meera Joshi (3).txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Meera Joshi (3).txt", "line": 3, "intent": "size"}
+{"file": "WhatsApp Chat with Meera Joshi (3).txt", "line": 5, "intent": "refund"}
+{"file": "WhatsApp Chat with Kabir Singh.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Kabir Singh.txt", "line": 3, "intent": "callback"}
+{"file": "WhatsApp Chat with Kabir Singh.txt", "line": 5, "intent": "size"}
+{"file": "WhatsApp Chat with Kabir Singh.txt", "line": 7, "intent": "cod"}
+{"file": "WhatsApp Chat with Kabir Singh.txt", "line": 9, "intent": "returns"}
+{"file": "WhatsApp Chat with Arjun Sharma.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Arjun Sharma.txt", "line": 3, "intent": "order_status"}
+{"file": "WhatsApp Chat with Arjun Sharma.txt", "line": 5, "intent": "callback"}
+{"file": "WhatsApp Chat with Meera Joshi (4).txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Meera Joshi (4).txt", "line": 3, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Meera Joshi (4).txt", "line": 5, "intent": "cod"}
+{"file": "WhatsApp Chat with Meera Joshi (4).txt", "line": 7, "intent": "callback"}
+{"file": "WhatsApp Chat with Ananya Mehta.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Ananya Mehta.txt", "line": 3, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Ananya Mehta.txt", "line": 5, "intent": "order_status"}
+{"file": "WhatsApp Chat with Ananya Mehta.txt", "line": 7, "intent": "callback"}
+{"file": "WhatsApp Chat with Meera Nair.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Meera Nair.txt", "line": 3, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Meera Nair.txt", "line": 5, "intent": "size"}
+{"file": "WhatsApp Chat with Meera Nair.txt", "line": 7, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Ishita Patel.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Ishita Patel.txt", "line": 3, "intent": "returns"}
+{"file": "WhatsApp Chat with Ishita Patel.txt", "line": 5, "intent": "size"}
+{"file": "WhatsApp Chat with Ishita Patel.txt", "line": 7, "intent": "order_status"}
+{"file": "WhatsApp Chat with Meera Bose.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Meera Bose.txt", "line": 3, "intent": "refund"}
+{"file": "WhatsApp Chat with Meera Bose.txt", "line": 5, "intent": "callback"}
+{"file": "WhatsApp Chat with Meera Bose.txt", "line": 7, "intent": "returns"}
+{"file": "WhatsApp Chat with Meera Bose.txt", "line": 9, "intent": "size"}
+{"file": "WhatsApp Chat with Nikhil Singh.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Nikhil Singh.txt", "line": 3, "intent": "order_status"}
+{"file": "WhatsApp Chat with Nikhil Singh.txt", "line": 5, "intent": "size"}
+{"file": "WhatsApp Chat with Nikhil Singh.txt", "line": 7, "intent": "callback"}
+{"file": "WhatsApp Chat with Nikhil Singh.txt", "line": 9, "intent": "returns"}
+{"file": "WhatsApp Chat with Vikram Rawat.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Vikram Rawat.txt", "line": 3, "intent": "returns"}
+{"file": "WhatsApp Chat with Vikram Rawat.txt", "line": 5, "intent": "colour_bleed"}
+{"file": "WhatsApp Chat with Vikram Rawat.txt", "line": 7, "intent": "size"}
+{"file": "WhatsApp Chat with Ishita Joshi.txt", "line": 2, "intent": "greeting"}
+{"file": "WhatsApp Chat with Ishita Joshi.txt", "line": 3, "intent": "order_status"}
+{"file": "WhatsApp Chat with Ishita Joshi.txt", "line": 5, "intent": "shipping_fee"}
+{"file": "WhatsApp Chat with Ishita Joshi.txt", "line": 7, "intent": "size"}

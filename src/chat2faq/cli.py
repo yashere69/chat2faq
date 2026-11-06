@@ -64,19 +64,33 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("-o", "--out", type=Path, help="write the FAQ as markdown")
     ap.add_argument("--jsonl", type=Path, help="write the FAQ as JSON Lines")
     ap.add_argument("--threshold", type=float, default=0.3)
+    ap.add_argument(
+        "--date-order",
+        choices=["auto", "dmy", "mdy"],
+        default="auto",
+        help="day/month order in timestamps (auto decides per file)",
+    )
     ap.add_argument("--min-asked", type=int, default=2)
     ap.add_argument("--labels", type=Path, help="per-line intent labels; prints an evaluation")
     args = ap.parse_args(argv)
 
     try:
-        msgs = parse_path(args.export)
-    except OSError as err:
+        msgs = parse_path(args.export, args.date_order)
+    except (OSError, ValueError) as err:
         print(f"error: {err}", file=sys.stderr)
         return 2
     if not msgs:
         print("error: no messages found; is this a WhatsApp export?", file=sys.stderr)
         return 2
+    if args.business and args.business not in {m.sender for m in msgs}:
+        print(f"error: nobody called {args.business!r} wrote in this export", file=sys.stderr)
+        return 2
     business = args.business or guess_business(msgs)
+    if not args.business:
+        print(
+            f"note: guessed the store is {business!r}; pass --business if that's wrong",
+            file=sys.stderr,
+        )
     qas = pair(msgs, business)
     v = Vectorizer([q.asked for q in qas] + [q.answered for q in qas if q.answered])
     entries = faq(merge_by_answer(group(qas, v, args.threshold), v), v, args.min_asked)

@@ -1,0 +1,10 @@
+21/01/26, 3:40 pm - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+21/01/26, 3:41 pm - Dev Menon: Hi
+21/01/26, 3:45 pm - Dev Menon: refund dev271@nakli pe kar do
+21/01/26, 4:28 pm - Indigo Loom: Return studio pahunchne ke 5 working days mein refund ho jata hai.
+21/01/26, 4:31 pm - Dev Menon: order #1028 ka status kya hai
+21/01/26, 5:05 pm - Indigo Loom: Hi Dev, #1028 courier ke paas hai. Tracking link: https://track.example.com/1028
+21/01/26, 5:23 pm - Dev Menon: size chart bhej do please
+21/01/26, 5:53 pm - Indigo Loom: Size chart: S 36, M 38, L 40, XL 42, XXL 44 inch bust.
+21/01/26, 6:08 pm - Dev Menon: delivery charge kitna hai
+21/01/26, 6:18 pm - Indigo Loom: ₹1,499 se upar ke prepaid order par shipping free hai, warna ₹79.

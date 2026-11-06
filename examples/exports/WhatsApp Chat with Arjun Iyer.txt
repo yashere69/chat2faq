@@ -1,0 +1,8 @@
+25/02/26, 6:11 pm - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+25/02/26, 6:12 pm - Arjun Iyer: Hi
+25/02/26, 6:29 pm - Arjun Iyer: shipping free hai?
+25/02/26, 6:55 pm - Indigo Loom: Prepaid orders above ₹1,499 ship free; below that it's ₹79.
+25/02/26, 7:06 pm - Arjun Iyer: Hi, mera order #1029 kab tak aayega?
+25/02/26, 7:39 pm - Indigo Loom: Hi Arjun, #1029 courier ke paas hai. Tracking link: https://track.example.com/1029
+25/02/26, 7:58 pm - Arjun Iyer: XL ka bust kitna hai?
+25/02/26, 8:08 pm - Indigo Loom: Hamare kurtas mein S 36, M 38, L 40, XL 42, XXL 44 (bust, inches). Thoda loose chahiye to ek size upar lijiye.

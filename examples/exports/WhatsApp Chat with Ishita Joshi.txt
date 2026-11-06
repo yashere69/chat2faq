@@ -1,0 +1,8 @@
+07/01/26, 9:59 am - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+07/01/26, 10:00 am - Ishita Joshi: Hello
+07/01/26, 10:12 am - Ishita Joshi: Hi, mera order #1040 kab tak aayega?
+07/01/26, 10:32 am - Indigo Loom: Namaste Ishita! Order #1040 dispatch ho gaya hai, 3-5 din mein pahunch jayega. Tracking: https://track.example.com/1040
+07/01/26, 10:36 am - Ishita Joshi: shipping free hai?
+07/01/26, 10:50 am - Indigo Loom: ₹1,499 se upar ke prepaid order par shipping free hai, warna ₹79.
+07/01/26, 10:53 am - Ishita Joshi: XL ka bust kitna hai?
+07/01/26, 11:27 am - Indigo Loom: Hamare kurtas mein S 36, M 38, L 40, XL 42, XXL 44 (bust, inches). Thoda loose chahiye to ek size upar lijiye.

@@ -11,13 +11,27 @@ for a person to review, not to be shipped blind.
 
 ```bash
 pip install git+https://github.com/yashere69/chat2faq
-chat2faq "WhatsApp Chat with Asha.txt" -o faq.md          # one export
 chat2faq exports/ --business "Your Store" -o faq.md --jsonl faq.jsonl
 ```
 
-Export a chat from WhatsApp (chat → ⋮ → More → Export chat → Without media), or export
-several into one folder. Android and iOS formats both work, with 12- or 24-hour clocks.
-[examples/faq.md](examples/faq.md) is the output for the sample export.
+Export each customer chat from WhatsApp (chat → ⋮ → More → Export chat → Without media)
+into one folder, the way they arrive: one `WhatsApp Chat with <name>.txt` per customer. A
+single file works too.
+
+What the parser handles, because real exports contain it:
+
+- Android and iOS layouts, 12- and 24-hour clocks, the narrow no-break space newer Android
+  builds put before "am"
+- **Day/month order**, decided per file. Indian phones write 25/12/26, but a phone set to a
+  US locale writes 12/25/26. Any first number above 12 means day first, any second number
+  above 12 means month first. Use `--date-order` when a file has no evidence either way.
+- Media and deletion placeholders (`<Media omitted>`, `image omitted`, `This message was
+  deleted`, missed calls), which are skipped, not mined as text. The `<This message was
+  edited>` marker is stripped.
+- The encryption notice and other system lines
+
+[examples/faq.md](examples/faq.md) is the output for the sample folder in
+[examples/exports](examples/exports). 21,000 lines of chat take about 2.5 seconds.
 
 ## Pipeline
 
@@ -40,7 +54,7 @@ Three steps carry most of the weight:
 - **Merging on the answer.** "shipping charges?" and "delivery ka kitna lagega" share
   almost nothing, but the store sends the same reply to both. Customers' questions vary far
   more than the store's answers do, so a second pass merges any groups whose typical
-  answers match. On the sample this takes 20 question groups down to 11 entries.
+  answers match. On the sample this takes 20 question groups down to 12 entries.
 - **Lookup detection.** Order numbers and tracking links are replaced with `#[ORDER]` and
   `[LINK]` before grouping. Any entry whose answer still contains them is marked *needs a
   lookup*: "where is my order" can't be answered with fixed text, so a bot needs an
@@ -49,18 +63,22 @@ Three steps carry most of the weight:
 
 ## How well it works on the sample
 
-The sample export was generated with [nakli](https://github.com/yashere69/nakli), which
-labels the intent of every customer line. That makes the output scoreable (`--labels`):
+The sample exports were generated with `nakli chats -n 40 --seed 7 --split` from
+[nakli](https://github.com/yashere69/nakli), which labels the intent of every customer line
+with its file and line number. That makes the output scoreable (`--labels`):
 
 | Measure | Result |
 |---|---|
 | Customer messages detected as questions | 84.6% |
-| Entry purity (questions in an entry sharing its main intent) | 94.2% |
+| Entry purity (questions in an entry sharing its main intent) | 96.2% |
 | Intents that got an entry | 8 / 8 |
 | Held-out questions (last 20% by time) matched to the right entry | 19 / 21 |
 
-A visible mistake is left in on purpose: "delivery charge kitna hai" lands in the
-size-chart entry, because "kitna hai" also appears in "XL ka bust kitna hai?". Character
+Two visible mistakes are left in on purpose. "delivery charge kitna hai" lands in the
+size-chart entry, because "kitna hai" also appears in "XL ka bust kitna hai?". And COD
+gets two entries ("COD available hai?" and "kya COD milega pune mein"), because the store
+answered them in two different wordings and the answer merge only joins near-identical
+replies. Character
 n-grams are good with spelling variation and bad with short shared phrases. The 15% of
 messages missed as questions are mostly requests without a question word ("refund is UPI pe
 kar do").

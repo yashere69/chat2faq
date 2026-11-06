@@ -55,9 +55,9 @@ def test_answer_merge_joins_differently_worded_questions():
 
 
 def test_sample_evaluation():
-    msgs = parse_path(EXAMPLES / "chat-export-android.txt")
+    msgs = parse_path(EXAMPLES / "exports")
     assert guess_business(msgs) == "Indigo Loom"
-    r = score(pair(msgs, "Indigo Loom"), load_labels(EXAMPLES / "chat-labels.jsonl"))
+    r = score(pair(msgs, "Indigo Loom"), load_labels(EXAMPLES / "labels.jsonl"))
     assert r["intents_with_entry"] == r["intents"]
     assert r["purity"] > 90
     assert r["heldout_covered"] >= 0.8 * r["heldout"]
@@ -66,10 +66,37 @@ def test_sample_evaluation():
 def test_cli_writes_outputs(tmp_path, capsys):
     out, jl = tmp_path / "faq.md", tmp_path / "faq.jsonl"
     assert (
-        main([str(EXAMPLES / "chat-export-android.txt"), "-o", str(out), "--jsonl", str(jl)]) == 0
+        main(
+            [
+                str(EXAMPLES / "exports"),
+                "--business",
+                "Indigo Loom",
+                "-o",
+                str(out),
+                "--jsonl",
+                str(jl),
+            ]
+        )
+        == 0
     )
     md = out.read_text()
     assert md.startswith("# FAQ mined from Indigo Loom chats")
     assert "Needs a lookup" in md
     assert "98765" not in md
     assert main([str(tmp_path / "missing.txt")]) == 2
+
+
+def test_big_export_is_fast(tmp_path):
+    import time
+
+    lines = []
+    for i in range(3000):
+        lines.append(f"01/02/26, 10:{i % 60:02d} am - Customer {i}: shipping free hai?")
+        lines.append(f"01/02/26, 10:{i % 60:02d} am - Store: Free above ₹1,499.")
+    (tmp_path / "big.txt").write_text("\n".join(lines))
+    start = time.perf_counter()
+    qas = pair(parse_path(tmp_path / "big.txt"), "Store")
+    v = Vectorizer([q.asked for q in qas] + [q.answered or "" for q in qas])
+    groups = merge_by_answer(group(qas, v, 0.3), v)
+    assert time.perf_counter() - start < 10  # pairing and grouping used to be quadratic
+    assert len(qas) == 3000 and len(groups) == 1

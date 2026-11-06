@@ -1,0 +1,10 @@
+22/01/26, 10:44 am - Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+22/01/26, 10:45 am - Meera Iyer: Hello
+22/01/26, 10:46 am - Meera Iyer: order #1025 ka status kya hai
+22/01/26, 10:48 am - Indigo Loom: Hi Meera, #1025 courier ke paas hai. Tracking link: https://track.example.com/1025
+22/01/26, 11:03 am - Meera Iyer: mera size 40 hai, kaunsa lu
+22/01/26, 11:24 am - Indigo Loom: Hamare kurtas mein S 36, M 38, L 40, XL 42, XXL 44 (bust, inches). Thoda loose chahiye to ek size upar lijiye.
+22/01/26, 11:38 am - Meera Iyer: delivery charge kitna hai
+22/01/26, 12:04 pm - Indigo Loom: Prepaid orders above ₹1,499 ship free; below that it's ₹79.
+22/01/26, 12:08 pm - Meera Iyer: can I return this kurta
+22/01/26, 12:10 pm - Indigo Loom: Haan, 7 din ke andar return ho jata hai. Sale ke dupatte return nahi hote.
