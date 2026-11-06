@@ -230,7 +230,7 @@ def faq(groups: list[Group], vectorizer: Vectorizer, min_asked: int = 2) -> list
                 asked=len(g.members),
                 answered=len(answers),
                 sources=[f"{m.question.source}:{m.question.line}" for m in g.members],
-                variants=sorted({m.asked for m in g.members})[:5],
+                variants=sorted({m.asked for m in g.members} - {rep})[:5],
             )
         )
     return out
