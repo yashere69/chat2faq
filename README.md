@@ -167,4 +167,16 @@ your FAQ stands.
 Stable: the CLI, the markdown and JSONL output, and the label format. Experimental: the
 grouping thresholds and the romanization rules.
 
+## Development
+
+```bash
+pip install -e ".[dev]"
+ruff check . && ruff format --check . && mypy src && pytest
+python tools/evaluate.py    # regenerates results/evaluation.md; rerun after any grouping change
+```
+
+A parser fix should come with a fixture in `tests/fixtures`, a few lines in the exact
+format, with personal details replaced. A change to grouping or thresholds should show its
+effect on `results/evaluation.md` in the same commit, the probe rows included.
+
 MIT licensed.
