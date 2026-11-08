@@ -1,0 +1,48 @@
+{"text": "parcel kab tak pahuchega", "intent": "order_status"}
+{"text": "mera order abhi tak dispatch hua ki nahi?", "intent": "order_status"}
+{"text": "tracking link bhejo #KC2210 ka", "intent": "order_status"}
+{"text": "order kab deliver hoga bhaiya", "intent": "order_status"}
+{"text": "still haven't received my package, any update?", "intent": "order_status"}
+{"text": "मेरा ऑर्डर कब आएगा?", "intent": "order_status"}
+{"text": "chest 42 hai kaunsa size sahi rahega", "intent": "size"}
+{"text": "L ka measurement kya hai?", "intent": "size"}
+{"text": "size guide hai kya", "intent": "size"}
+{"text": "M size fit hoga 38 bust pe?", "intent": "size"}
+{"text": "which size should I order for 40 inch bust", "intent": "size"}
+{"text": "साइज़ चार्ट भेज दो", "intent": "size"}
+{"text": "exchange kar sakte hai kya?", "intent": "returns"}
+{"text": "pasand nahi aaya, wapas kaise bheju", "intent": "returns"}
+{"text": "return window kitne din ka hai", "intent": "returns"}
+{"text": "kurta return karna hai", "intent": "returns"}
+{"text": "how many days do I have to return", "intent": "returns"}
+{"text": "वापसी कैसे करें?", "intent": "returns"}
+{"text": "cod milta hai?", "intent": "cod"}
+{"text": "cash pe delivery possible hai kya", "intent": "cod"}
+{"text": "online payment nahi karna, COD option?", "intent": "cod"}
+{"text": "do you take cash on delivery", "intent": "cod"}
+{"text": "COD pe extra charge hai?", "intent": "cod"}
+{"text": "कैश ऑन डिलीवरी है?", "intent": "cod"}
+{"text": "delivery free hai kya?", "intent": "shipping_fee"}
+{"text": "shipping ka kitna lagega", "intent": "shipping_fee"}
+{"text": "1000 ke order pe shipping charge?", "intent": "shipping_fee"}
+{"text": "is shipping free above some amount", "intent": "shipping_fee"}
+{"text": "courier charges kitne hai", "intent": "shipping_fee"}
+{"text": "डिलीवरी चार्ज कितना है?", "intent": "shipping_fee"}
+{"text": "dhulai mein rang toh nahi jayega?", "intent": "colour_bleed"}
+{"text": "is the colour fast or will it run", "intent": "colour_bleed"}
+{"text": "kapda rang chhodega kya", "intent": "colour_bleed"}
+{"text": "pehli baar dhone pe colour niklega?", "intent": "colour_bleed"}
+{"text": "will the dye bleed in wash", "intent": "colour_bleed"}
+{"text": "धोने पर रंग निकलेगा?", "intent": "colour_bleed"}
+{"text": "paisa kab wapas aayega", "intent": "refund"}
+{"text": "refund status kya hai", "intent": "refund"}
+{"text": "refund mere account mein kab tak", "intent": "refund"}
+{"text": "when will I get my money back", "intent": "refund"}
+{"text": "refund ho gaya kya?", "intent": "refund"}
+{"text": "रिफंड कब मिलेगा?", "intent": "refund"}
+{"text": "mujhe call kar lo please", "intent": "callback"}
+{"text": "can someone call me", "intent": "callback"}
+{"text": "phone pe baat kar sakte hai?", "intent": "callback"}
+{"text": "call back kar dena", "intent": "callback"}
+{"text": "please give me a call", "intent": "callback"}
+{"text": "मुझे कॉल करें", "intent": "callback"}

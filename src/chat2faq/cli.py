@@ -9,7 +9,7 @@ from collections import Counter
 from pathlib import Path
 
 from . import __version__
-from .evaluate import load_labels, score
+from .evaluate import best_entry, load_labels, load_probe, probe_score, score
 from .mine import Entry, Vectorizer, faq, group, merge_by_answer, pair
 from .parse import parse_path
 from .redact import backend
@@ -72,6 +72,11 @@ def main(argv: list[str] | None = None) -> int:
     )
     ap.add_argument("--min-asked", type=int, default=2)
     ap.add_argument("--labels", type=Path, help="per-line intent labels; prints an evaluation")
+    ap.add_argument(
+        "--probe",
+        type=Path,
+        help="questions to try against the FAQ (text lines, or JSONL with text and intent)",
+    )
     args = ap.parse_args(argv)
 
     try:
@@ -110,6 +115,28 @@ def main(argv: list[str] | None = None) -> int:
             ),
             encoding="utf-8",
         )
+    if args.probe:
+        try:
+            probes = load_probe(args.probe)
+        except (OSError, ValueError) as err:
+            print(f"error: {err}", file=sys.stderr)
+            return 2
+        kept = [
+            g
+            for g in merge_by_answer(group(qas, v, args.threshold), v)
+            if len(g.members) >= args.min_asked
+        ]
+        print(f"\nprobe: {len(probes)} questions")
+        for p in probes:
+            i, sim = best_entry(kept, v, p["text"])
+            hit = entries[i].question if i is not None and sim >= args.threshold else "(no entry)"
+            print(f"  {sim:4.2f}  {p['text']}  ->  {hit}")
+        if args.labels and all("intent" in p for p in probes):
+            r = probe_score(qas, load_labels(args.labels), probes, args.threshold)
+            print(
+                f"probe answered by the right entry  {r['right']}/{r['probes']}"
+                f"  (wrong entry {len(r['wrong'])}, no entry {len(r['unanswered'])})"
+            )
     if args.labels:
         r = score(qas, load_labels(args.labels), args.threshold)
         print(f"\nquestion detection recall   {r['question_recall']}%")
