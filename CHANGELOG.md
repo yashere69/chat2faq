@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0
+
+- Reads more export variants: `.`/`-` date separators and year-first dates, `a.m.`/`p.m.`
+  and Hindi day periods, direction marks around phone-number senders, iOS `~` names and
+  the iOS encryption banner, `<attached: …>` placeholders, BOM, CRLF and UTF-16 files.
+- Fixed: `<This message was edited>` survived at the end of multi-line messages.
+- Devanagari is romanized before matching, so it meets Roman-script entries.
+- `--probe`: ask the FAQ questions it wasn't built from.
+- `tools/evaluate.py`: clean, messy and probe evaluations in `results/evaluation.md`.
+
 ## 0.2.0
 
 - Day/month order detected per file (US-locale exports crashed before); `--date-order` to force it

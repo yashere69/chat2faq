@@ -7,7 +7,7 @@ the store actually gives. Personal details are redacted, and every entry links b
 chat lines it came from. The result is a starting knowledge base for a support bot, made
 for a person to review, not to be shipped blind.
 
-![chat2faq mining 104 questions from a sample export into 11 entries, with an evaluation against intent labels](docs/demo.png)
+![chat2faq mining 104 questions from a sample export into 12 entries, with an evaluation against intent labels](docs/demo.png)
 
 ```bash
 pip install git+https://github.com/yashere69/chat2faq
@@ -21,14 +21,29 @@ single file works too.
 What the parser handles, because real exports contain it:
 
 - Android and iOS layouts, 12- and 24-hour clocks, the narrow no-break space newer Android
-  builds put before "am"
+  builds put before "am", `a.m.`/`p.m.`, and the Hindi day periods (पूर्वाह्न/अपराह्न)
+  a Hindi-language phone writes
+- Dates with `/`, `.` or `-` between the parts, including year-first (`2026-01-11`)
+- Invisible direction marks around phone-number senders (`+91 98765 43210` arrives
+  wrapped in U+202A/U+202C), iOS's `~` before unsaved contacts, and the iOS habit of
+  putting the contact's name on the encryption banner
+- Files re-saved by Notepad or Excel: a byte-order mark, CRLF line ends, or UTF-16
 - **Day/month order**, decided per file. Indian phones write 25/12/26, but a phone set to a
   US locale writes 12/25/26. Any first number above 12 means day first, any second number
   above 12 means month first. Use `--date-order` when a file has no evidence either way.
-- Media and deletion placeholders (`<Media omitted>`, `image omitted`, `This message was
-  deleted`, missed calls), which are skipped, not mined as text. The `<This message was
-  edited>` marker is stripped.
+- Media and deletion placeholders (`<Media omitted>`, `image omitted`, `<attached: …>`,
+  `This message was deleted`, missed calls, shared locations), which are skipped, not mined
+  as text. The `<This message was edited>` marker is stripped, also from multi-line
+  messages.
 - The encryption notice and other system lines
+
+Each of these has a fixture in [tests/fixtures](tests/fixtures), written to the format
+and checked line by line in `tests/test_formats.py`. They are constructed, not real
+exports. If your export parses wrongly, a redacted three-line sample is the most useful
+bug report.
+
+Devanagari is written in Roman letters before matching, so "मेरा ऑर्डर कब आएगा?" lands on
+the same entry as "mera order kab tak aayega?".
 
 [examples/faq.md](examples/faq.md) is the output for the sample folder in
 [examples/exports](examples/exports). 21,000 lines of chat take about 2.5 seconds.
@@ -61,31 +76,55 @@ Three steps carry most of the weight:
   order-status tool there. Knowing which FAQs need tools is half the design of a support
   agent.
 
-## How well it works on the sample
+## How well it works
 
-The sample exports were generated with `nakli chats -n 40 --seed 7 --split` from
-[nakli](https://github.com/yashere69/nakli), which labels the intent of every customer line
-with its file and line number. That makes the output scoreable (`--labels`):
+`python tools/evaluate.py` runs three evaluations and writes
+[results/evaluation.md](results/evaluation.md). All three use synthetic data, and the
+section says where that flatters the numbers.
 
-| Measure | Result |
-|---|---|
-| Customer messages detected as questions | 84.6% |
-| Entry purity (questions in an entry sharing its main intent) | 96.2% |
-| Intents that got an entry | 8 / 8 |
-| Held-out questions (last 20% by time) matched to the right entry | 19 / 21 |
+**On the sample.** The sample exports were generated with `nakli chats -n 40 --seed 7
+--split` from [nakli](https://github.com/yashere69/nakli), which labels the intent of every
+customer line with its file and line number. That makes the output scoreable (`--labels`):
 
-Two visible mistakes are left in on purpose. "delivery charge kitna hai" lands in the
-size-chart entry, because "kitna hai" also appears in "XL ka bust kitna hai?". And COD
-gets two entries ("COD available hai?" and "kya COD milega pune mein"), because the store
-answered them in two different wordings and the answer merge only joins near-identical
-replies. Character
-n-grams are good with spelling variation and bad with short shared phrases. The 15% of
-messages missed as questions are mostly requests without a question word ("refund is UPI pe
-kar do").
+| Data | Questions detected | Entry purity | Intents with an entry | Held-out covered |
+|---|---|---|---|---|
+| clean sample | 84.6% | 96.2% (12 entries) | 8/8 | 19/21 |
+| messy copy | 74.8% | 95.7% (12 entries) | 8/8 | 17/19 |
 
-nakli's chats are template-generated and far tidier than real ones, so expect lower numbers
-on a real export. Real chats need a hand-labelled sample to measure against; the evaluation
-code doesn't change.
+The messy copy puts the same conversations through what real exports do to them (seed 11):
+half go to the iOS format with direction marks, some customers become bare phone numbers,
+some files get a BOM and CRLF, 40% of customer messages lose their "?", 15% get a typo, 20%
+get an emoji, and media, deleted and "ok" lines appear between messages. Parsing survives
+all of it. Question detection drops by ten points, mostly from the missing question marks.
+
+Purity measures whether an entry's questions share an intent. Two mistakes are visible in
+the sample output. "delivery charge kitna hai" lands in the size-chart entry, because
+"kitna hai" also appears in "XL ka bust kitna hai?". COD gets two entries, because the store
+answered in two different wordings and the answer merge only joins near-identical replies.
+
+**On questions it wasn't built from.** Purity on template-generated chats flatters any
+method, so [examples/probe.jsonl](examples/probe.jsonl) has 48 questions written separately
+from nakli's templates, six per intent. They use other words, English-only and Devanagari
+phrasings, and one with an order number. `--probe` asks the FAQ built from the sample to
+answer each one:
+
+| Similarity threshold | Right entry | Wrong entry | No entry |
+|---|---|---|---|
+| 0.20 | 27 | 9 | 12 |
+| 0.25 | 23 | 3 | 22 |
+| **0.30 (default)** | **19** | **3** | **26** |
+| 0.35 | 16 | 1 | 31 |
+
+So at the default, it answers 40% of new phrasings correctly and rarely answers wrongly.
+Most misses are synonyms that character n-grams can't connect: "paisa kab wapas aayega" for
+refund, "kapda rang chhodega" for colour bleed. Romanizing Devanagari moved 2 of the 8
+Devanagari probes from no answer to the right entry, and 1 to a wrong one. The probe
+questions were written by the author of this tool, so treat them as a check, not a
+benchmark.
+
+That is the reason the output is a draft for a person and a knowledge base for an LLM bot,
+not an intent classifier. Run `--probe` with questions your own customers ask to see where
+your FAQ stands.
 
 ## Privacy
 
@@ -103,8 +142,8 @@ code doesn't change.
 ## Choices
 
 - **Own parser, not whatstk.** [whatstk](https://github.com/lucasrodes/whatstk) is a mature
-  WhatsApp parser, but it's GPL-3.0 and pulls in pandas and plotly. Parsing two export
-  formats takes about 70 lines here and keeps the package MIT and dependency-free.
+  WhatsApp parser with chat analytics, but it's GPL-3.0 and pulls in pandas and plotly.
+  The parser here is about 150 lines and keeps the package MIT and dependency-free.
 - **No embeddings, no LLM.** Grouping is pure Python and deterministic, so the same export
   always produces the same FAQ. An embedding model would group paraphrases better; a next
   version could take one as an optional backend and keep this as the baseline it has to beat.
@@ -116,6 +155,12 @@ code doesn't change.
 - Pairing takes the store's next message to that customer within six hours. If the store
   answers two questions in one message, both get the same answer.
 - Media, voice notes, deleted messages and replies-to-quote aren't interpreted.
-- Group chats work, but every non-store sender is treated as a customer.
+- Group chats work, but every non-store sender is treated as a customer, and a group
+  system notice that happens to contain ": " would be read as a message.
+- Matching is character n-grams, so synonyms and translations are invisible to it: "paisa"
+  doesn't meet "refund", and "रंग" only meets "rang", not "colour".
+
+Stable: the CLI, the markdown and JSONL output, and the label format. Experimental: the
+grouping thresholds and the romanization rules.
 
 MIT licensed.
