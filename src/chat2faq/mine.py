@@ -21,6 +21,7 @@ from datetime import timedelta
 
 from .parse import Message
 from .redact import redact
+from .roman import romanize
 
 INTERROGATIVES = re.compile(
     r"\b(kya|kab|kaise|kitna|kitne|kitni|kaunsa|kaun|kahan|kyu|kyun|"
@@ -102,7 +103,9 @@ def _addresses(reply: Message, question: Message) -> bool:
 
 
 def _grams(text: str) -> Counter[str]:
-    t = re.sub(r"\[[A-Z]+\]", " ", text.lower())
+    # Redaction tags stay in as words: "[ORDER]" or "[PHONE]" says a lot about what was
+    # asked. Devanagari is written in Roman letters first, so both scripts share n-grams.
+    t = romanize(text.lower())
     t = re.sub(r"[^\wऀ-ॿ ]+", " ", t)
     t = " " + re.sub(r"\s+", " ", t).strip() + " "
     return Counter(t[i : i + n] for n in (3, 4, 5) for i in range(len(t) - n + 1))
