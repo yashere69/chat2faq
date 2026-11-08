@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Output is UTF-8 even when redirected on Windows, where it used to follow the code page
+  and fail on Devanagari text.
+- CI runs the tests on Windows and macOS as well as Linux.
+
 ## 0.3.0
 
 - Reads more export variants: `.`/`-` date separators and year-first dates, `a.m.`/`p.m.`

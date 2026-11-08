@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import sys
 from collections import Counter
@@ -56,7 +57,17 @@ def to_markdown(entries: list[Entry], business: str) -> str:
     return "\n".join(lines)
 
 
+def _utf8_output() -> None:
+    """Write UTF-8 even when output is redirected on Windows, where it would otherwise use
+    the locale's code page and fail on Devanagari or Hinglish text."""
+    for stream in (sys.stdout, sys.stderr):
+        enc = (stream.encoding or "").lower().replace("-", "")
+        if enc != "utf8" and isinstance(stream, io.TextIOWrapper):
+            stream.reconfigure(encoding="utf-8")
+
+
 def main(argv: list[str] | None = None) -> int:
+    _utf8_output()
     ap = argparse.ArgumentParser(prog="chat2faq")
     ap.add_argument("--version", action="version", version=f"chat2faq {__version__}")
     ap.add_argument("export", type=Path, help="a WhatsApp .txt export, or a folder of them")
