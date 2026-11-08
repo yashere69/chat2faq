@@ -145,8 +145,12 @@ your FAQ stands.
   WhatsApp parser with chat analytics, but it's GPL-3.0 and pulls in pandas and plotly.
   The parser here is about 150 lines and keeps the package MIT and dependency-free.
 - **No embeddings, no LLM.** Grouping is pure Python and deterministic, so the same export
-  always produces the same FAQ. An embedding model would group paraphrases better; a next
-  version could take one as an optional backend and keep this as the baseline it has to beat.
+  always produces the same FAQ. An embedding model should group paraphrases better, but the
+  one offline embedder I could test didn't: with WordLlama (static, English-trained) the
+  closest entry was right for 24 of the 48 probe questions, against 34 for n-grams, and
+  averaging the two only moved along the same right/wrong trade-off as lowering the
+  n-gram threshold (`tools/probe_wordllama.py`). A multilingual model that knows "paisa
+  wapas" means refund is the backend worth adding; it hasn't been measured here.
 - **Single-pass grouping.** It's order-dependent but linear-ish and needs no numpy. With
   tens of thousands of questions, swap it for proper agglomerative clustering.
 
