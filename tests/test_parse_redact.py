@@ -70,5 +70,8 @@ def test_labels_keyed_by_file(tmp_path):
     from chat2faq.evaluate import load_labels
 
     p = tmp_path / "l.jsonl"
-    p.write_text('{"file": "a.txt", "line": 2, "intent": "cod"}\n{"line": 3, "intent": "x"}\n')
+    p.write_text(
+        '{"file": "a.txt", "line": 2, "intent": "cod"}\n{"line": 3, "intent": "x"}\n',
+        encoding="utf-8",
+    )
     assert load_labels(p) == {("a.txt", 2): "cod", (None, 3): "x"}

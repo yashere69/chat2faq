@@ -79,7 +79,7 @@ def test_cli_writes_outputs(tmp_path, capsys):
         )
         == 0
     )
-    md = out.read_text()
+    md = out.read_text(encoding="utf-8")
     assert md.startswith("# FAQ mined from Indigo Loom chats")
     assert "Needs a lookup" in md
     assert "98765" not in md
@@ -93,7 +93,7 @@ def test_big_export_is_fast(tmp_path):
     for i in range(3000):
         lines.append(f"01/02/26, 10:{i % 60:02d} am - Customer {i}: shipping free hai?")
         lines.append(f"01/02/26, 10:{i % 60:02d} am - Store: Free above ₹1,499.")
-    (tmp_path / "big.txt").write_text("\n".join(lines))
+    (tmp_path / "big.txt").write_text("\n".join(lines), encoding="utf-8")
     start = time.perf_counter()
     qas = pair(parse_path(tmp_path / "big.txt"), "Store")
     v = Vectorizer([q.asked for q in qas] + [q.answered or "" for q in qas])
